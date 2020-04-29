@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/Lato-Regular.ttf') format('truetype');
+}
+
+:root {
+    --bkg: #D7E2DC;
+    --boxLabel: #654C4F;
+    --main: #654C4F;
+    --link: #CEC075;
+    --nodeStroke: #654C4F;
+    --nodeFill: #CEC075;
+}
+
+body {
+    font-family: 'Lato';
+    margin: 0;
+    overflow: hidden;
+}
+
+#label-bkg {
+    position: fixed;
+    bottom: 0;
+    font-size: 400px;
+    font-weight: 800;
+    line-height: 75%;
+    opacity: .05;
+    color: var(--boxLabel);
+}
+
+.node {
+    cursor: pointer;
+}
+
+.overlay {
+    background-color: var(--bkg);
+}
+
+.node circle {
+    fill: var(--nodeFill);
+    stroke: var(--nodeStroke);
+    stroke-width: 1.5px;
+}
+
+.node text {
+    font-size: 14px;
+    fill: var(--main);
+}
+
+.link {
+    fill: none;
+    stroke: var(--link);
+    stroke-width: 1.5px;
+}
+
+.ghostCircle.show {
+    display: block;
+}
+
+.ghostCircle, .activeDrag .ghostCircle {
+    display: none;
+}
+
+.levelBox {
+    font-size: 48px;
+    fill: var(--boxLabel);
+    opacity: .3;
+    text-anchor: middle;
+    /*writing-mode: vertical-rl;*/
+    text-orientation: upright;
+    font-weight: bold;
+    y: 100;
+    text-transform: capitalize;
+}
