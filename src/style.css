@@ -26,6 +26,7 @@ body {
     line-height: 75%;
     opacity: .05;
     color: var(--boxLabel);
+    pointer-events: none;
 }
 
 .node {
@@ -70,5 +71,5 @@ body {
     text-orientation: upright;
     font-weight: bold;
     y: 100;
-    text-transform: capitalize;
+    pointer-events: none;
 }

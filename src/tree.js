@@ -106,8 +106,22 @@ function centerNode(source) {
     scale = zoomListener.scale();
     x = -source.y0;
     y = -source.x0;
-    x = x * scale + viewerWidth / 5;
-    y = y * scale + (viewerHeight / 2 + 40);
+    if (!source.parent) {
+        x = x * scale + viewerWidth / 10;
+        y = y * scale + (viewerHeight / 2 + 20);
+        // console.log('init', x, y);
+    } else if (!source.children) {
+        x = -source.parent.y0 * scale + viewerWidth / 4;
+        y = -source.parent.x0 * scale + viewerHeight / 2;
+        // console.log('close', source);
+    } else {
+        x = -source.y0 * scale + viewerWidth / 4;
+        y = -source.x0 * scale + viewerHeight / 2;
+        // console.log('open', source.children[0]);
+    }
+
+
+    // console.log(source);
 
     d3.select('g').transition()
         .duration(duration)
@@ -173,7 +187,7 @@ function update(source) {
         d.y = (d.depth * (maxLabelLength * 8)); //maxLabelLength * 10px
         // alternatively to keep a fixed scale one can set a fixed depth per level
         // Normalize for fixed-depth by commenting out below line
-        // d.y = (d.depth * 500); //500px per level.
+        d.y = (d.depth * 400); //500px per level.
     });
 
     // Update the nodes…
@@ -336,7 +350,7 @@ function processLevelBoxes() {
         .attr('x', function (d) {
             // console.log(d.values[0]);
             if (d.values[0].depth > 1) {
-                return d.values[0].y0 - d.values[0].parent.x0;
+                return d.values[0].depth * 400;
             } else {
                 return d.values[0].parent ? d.values[0].parent.x : 0;
             }
@@ -345,6 +359,7 @@ function processLevelBoxes() {
             return d.values[0].category;
         }); //the key from the nesting, i.e. the depth
 }
+
 
 // Append a group which holds all nodes and which the zoom Listener can act upon.
 let svgGroup = baseSvg.append('g').attr('class', 'main-group');
