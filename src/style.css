@@ -24,7 +24,7 @@ body {
     font-size: 400px;
     font-weight: 800;
     line-height: 75%;
-    opacity: .05;
+    opacity: .1;
     color: var(--boxLabel);
     pointer-events: none;
 }

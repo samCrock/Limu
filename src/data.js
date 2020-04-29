@@ -101,14 +101,14 @@ tipologie_museali.map(tm => {
                                     return {
                                         name: o,
                                         category: 'Output',
-                                        _children: tecniche_e_tecnologie.map(e => {
+                                        _children: tecniche_e_tecnologie.map(tt => {
                                             return {
-                                                name: e,
-                                                category: 'Esperienza',
-                                                _children: esperienza.map(tt => {
+                                                name: tt,
+                                                category: 'Tecnologie',
+                                                _children: esperienza.map(e => {
                                                     return {
-                                                        name: tt,
-                                                        category: 'Tecnologie',
+                                                        name: e,
+                                                        category: 'Esperienza',
                                                     }
                                                 })
                                             }
