@@ -1,5 +1,5 @@
 // 1
-const tipologie_museali = [
+let tipologie_museali = [
     'Museo d\'Arte',
     'Musei di Storia e Archeologia',
     'Musei di Scienza e Tecnica',
@@ -15,14 +15,14 @@ const tipologie_museali = [
 ];
 
 // 2
-const categorie = [
+let categorie = [
     'Musei Tradizionali',
     'Musei Multimediali',
     'Musei Virtuali'
 ];
 
 // 3
-const tipologie_espositive = [
+let tipologie_espositive = [
     'Mostre Permanenti',
     'Mostre Temporanee',
     'Installazioni Permanenti',
@@ -30,25 +30,26 @@ const tipologie_espositive = [
 ];
 
 // 4
-const modalita_rappresentazione = [
+let modalita_rappresentazione = [
     'Bidimensionale',
     'Tridimensionale'
 ];
 
 // 5
-const linguaggi_visivi = [
+let linguaggi_visivi = [
     'Filmati',
     'Animazioni',
-    '3D: Ricostruzioni',
-    '3D: Simulazioni',
-    '3D: Serious Games',
-    '3D: Panorami Sferici',
+    'Ricostruzioni',
+    'Simulazioni',
+    'Serious Games / Gamification',
+    'Panorami Sferici 3D',
     'Panorami Statici',
     'Panorami Dinamici',
+    'Guide',
 ];
 
 // 6
-const output = [
+let output = [
     'Dispositivi Portatili',
     'Dispositivi Head Mount',
     'Dispositivi Fissi',
@@ -56,22 +57,22 @@ const output = [
 ];
 
 // 7
-const tecniche_e_tecnologie = [
-    'AR',
-    'VR',
-    'MR',
+let tecniche_e_tecnologie = [
+    'Realtà Aumentata',
+    'Realtà Virtuale',
+    'Realtà Mista',
     'Web 3.0',
     'Sensori di Movimento',
-    'Sensori Touch',
-    'AR Analogica',
+    'Dispositivi Touch',
+    'Realtà Aumentata Analogica',
     'Video Mapping',
     'Video Proiezioni',
-    'Gamification',
-    'Guide (Video Augmented)'
+    'Immagini stereoscopiche',
+    'App'
 ];
 
 // 8
-const esperienza = [
+let esperienza = [
     'Interattiva',
     'Immersiva',
     'Interattiva / Immersiva',
@@ -91,7 +92,13 @@ tipologie_museali.map(tm => {
     treeData.children.push({
         name: tm,
         category: 'Tipologie',
-        _children: categorie.map(c => {
+        _children: categorie.filter(c => {
+            if (tm === 'Musei di Storia e Archeologia') {
+                return c  !== 'Musei Virtuali';
+            } else {
+                return c;
+            }
+        }).map(c => {
             return {
                 name: c,
                 category: 'Categorie',
@@ -103,18 +110,30 @@ tipologie_museali.map(tm => {
                             return {
                                 name: mr,
                                 category: 'Rappresentazione',
-                                _children: linguaggi_visivi.map(lv => {
+                                _children: linguaggi_visivi.filter(lv => {
+                                    if (mr === 'Tridimensionale') {
+                                        return lv !== 'Panorami Statici' && lv !== 'Panorami Dinamici' && lv !== 'Guide';
+                                    } else {
+                                        return lv;
+                                    }
+                                }).map(lv => {
                                     return {
                                         name: lv,
                                         category: 'Linguaggi',
-                                        _children: output.map(o => {
+                                        _children: tecniche_e_tecnologie.filter(tt => {
+                                            if (lv === 'Ricostruzioni') {
+                                                return tt !== 'Sensori di Movimento' && tt !== 'Dispositivi Touch' && tt !== 'Realtà Aumentata Analogica';
+                                            } else {
+                                                return tt;
+                                            }
+                                        }).map(tt => {
                                             return {
-                                                name: o,
-                                                category: 'Output',
-                                                _children: tecniche_e_tecnologie.map(tt => {
+                                                name: tt,
+                                                category: 'Tecnologie',
+                                                _children: output.map(o => {
                                                     return {
-                                                        name: tt,
-                                                        category: 'Tecnologie',
+                                                        name: o,
+                                                        category: 'Output',
                                                         _children: esperienza.map(e => {
                                                             return {
                                                                 name: e,

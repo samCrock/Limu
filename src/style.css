@@ -12,10 +12,11 @@
     --nodeFill: #CEC075;
 }
 
-body {
+html, body {
     font-family: 'Lato';
     margin: 0;
     overflow: hidden;
+    background-color: var(--bkg);
 }
 
 #label-bkg {
