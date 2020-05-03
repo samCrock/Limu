@@ -63,7 +63,7 @@ body {
 }
 
 .levelBox {
-    font-size: 48px;
+    font-size: 40px;
     fill: var(--boxLabel);
     opacity: .3;
     text-anchor: middle;

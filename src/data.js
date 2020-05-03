@@ -30,6 +30,12 @@ const tipologie_espositive = [
 ];
 
 // 4
+const modalita_rappresentazione = [
+    'Bidimensionale',
+    'Tridimensionale'
+];
+
+// 5
 const linguaggi_visivi = [
     'Filmati',
     'Animazioni',
@@ -41,7 +47,7 @@ const linguaggi_visivi = [
     'Panorami Dinamici',
 ];
 
-// 5
+// 6
 const output = [
     'Dispositivi Portatili',
     'Dispositivi Head Mount',
@@ -49,7 +55,7 @@ const output = [
     'Superfici'
 ];
 
-// 6
+// 7
 const tecniche_e_tecnologie = [
     'AR',
     'VR',
@@ -64,7 +70,7 @@ const tecniche_e_tecnologie = [
     'Guide (Video Augmented)'
 ];
 
-// 7
+// 8
 const esperienza = [
     'Interattiva',
     'Immersiva',
@@ -93,22 +99,28 @@ tipologie_museali.map(tm => {
                     return {
                         name: te,
                         category: 'Tipologie Espositive',
-                        _children: linguaggi_visivi.map(lv => {
+                        _children: modalita_rappresentazione.map(mr => {
                             return {
-                                name: lv,
-                                category: 'Linguaggi',
-                                _children: output.map(o => {
+                                name: mr,
+                                category: 'Rappresentazione',
+                                _children: linguaggi_visivi.map(lv => {
                                     return {
-                                        name: o,
-                                        category: 'Output',
-                                        _children: tecniche_e_tecnologie.map(tt => {
+                                        name: lv,
+                                        category: 'Linguaggi',
+                                        _children: output.map(o => {
                                             return {
-                                                name: tt,
-                                                category: 'Tecnologie',
-                                                _children: esperienza.map(e => {
+                                                name: o,
+                                                category: 'Output',
+                                                _children: tecniche_e_tecnologie.map(tt => {
                                                     return {
-                                                        name: e,
-                                                        category: 'Esperienza',
+                                                        name: tt,
+                                                        category: 'Tecnologie',
+                                                        _children: esperienza.map(e => {
+                                                            return {
+                                                                name: e,
+                                                                category: 'Esperienza',
+                                                            }
+                                                        })
                                                     }
                                                 })
                                             }
