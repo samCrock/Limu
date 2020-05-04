@@ -130,11 +130,23 @@ tipologie_museali.map(tm => {
                                             return {
                                                 name: tt,
                                                 category: 'Tecnologie',
-                                                _children: output.map(o => {
+                                                _children: output.filter(o => {
+                                                    if (tt === 'Realtà Virtuale') {
+                                                        return o !== 'Superfici';
+                                                    } else {
+                                                        return o;
+                                                    }
+                                                }).map(o => {
                                                     return {
                                                         name: o,
                                                         category: 'Output',
-                                                        _children: esperienza.map(e => {
+                                                        _children: esperienza.filter(e => {
+                                                            if (o === 'Dispositivi Head Mount') {
+                                                                return e !== 'Interattiva';
+                                                            } else {
+                                                                return e;
+                                                            }
+                                                        }).map(e => {
                                                             return {
                                                                 name: e,
                                                                 category: 'Esperienza',
